@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter for You ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #121212;
+            background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-screen {
+            width: 90%;
+            max-width: 380px;
+            height: 80vh;
+            max-height: 680px;
+            background: #1f1f1f;
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+        }
+
+        .phone-screen:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.7);
+        }
+
+        .letter-container {
+            text-align: left;
+            font-size: 1rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            width: 100%;
+            height: 100%;
+            max-height: 500px;
+            overflow: hidden;
+            color: #ff4444;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #ff4444;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatEffect {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .phone-screen {
+            animation: floatEffect 3s infinite ease-in-out;
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: absolute;
+            color: red;
+            opacity: 0.8;
+            font-size: 20px;
+            animation: floatHearts linear infinite;
+        }
+
+        @keyframes floatHearts {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-200px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 480px) {
+            .phone-screen {
+                width: 95%;
+                height: 75vh;
+            }
+
+            .letter-container {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="phone-screen">
+        <div class="letter-container" id="letter">
+            <span id="text"></span><span class="cursor"></span>
+        </div>
+    </div>
+
+    <!-- JavaScript for Typing Effect & Heart Animation -->
+    <script>
+        const letterText = ` Dear Love 💐,
+It's 8 Juin and Today is very special day because it's your Birthday Wishing you the happiest birthday! I hope your day is as amazing as you are. You have this incredible way of making people smile, and you truly deserve all the happiness in the world today and always.
+Wishing you a year filled with laughter, love, and everything that makes you happy. Just know that someone out there is really hoping you have the best day ever.
+Have an amazing birthday Tanvi !❤️
+— Someone who thinks you're pretty special:)
+`;
+
+        let index = 0;
+
+        function typeLetter() {
+            if (index < letterText.length) {
+                document.getElementById("text").innerHTML += letterText[index];
+                index++;
+                setTimeout(typeLetter, 80);
+            }
+        }
+
+        setTimeout(typeLetter, 1000);
+
+        // Function to Create Floating Hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            document.body.appendChild(heart);
+
+            const x = Math.random() * window.innerWidth; // Random horizontal position
+            const size = Math.random() * 20 + 15; // Random size (15px - 35px)
+            const duration = Math.random() * 3 + 2; // Random speed (2s - 5s)
+
+            heart.style.left = `${x}px`;
+            heart.style.fontSize = `${size}px`;
+            heart.style.animationDuration = `${duration}s`;
+
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // Generate Floating Hearts More Frequently
+        setInterval(createHeart, 300); // More hearts appearing every 300ms
+    </script>
+</body>
+
+</html>
